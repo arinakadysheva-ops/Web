@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Избранное</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="left-buttons">
+            <a href="cart.html" class="icon-btn" aria-label="Корзина" style="text-decoration: none;">
+                <img src="images/basket.png" alt="basket">
+            </a>
+            <a href="favorites.html" class="icon-btn" aria-label="Избранное" style="text-decoration: none;">
+                <img src="images/like.png" alt="like">
+            </a>
+        </div>
+
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Логотип">
+        </div>
+
+        <div class="right-buttons">
+            <a href="catalog.html" style="text-decoration: none;">
+                <button class="text-btn">Каталог</button>
+            </a>
+            <a href="about.html" style="text-decoration: none;">
+                <button class="text-btn">О нас</button>
+            </a>
+            <a href="delivery.html" style="text-decoration: none;">
+                <button class="text-btn">Доставка</button>
+            </a>
+        </div>
+    </header>
+
+    <!-- Плашка Избранное и кнопка Главная -->
+    <section class="favorites-header-section">
+        <div class="favorites-title-plate">
+            <span class="favorites-title-text">Избранное</span>
+        </div>
+        <a href="index.html" class="favorites-home-button">
+            <span class="favorites-home-text">Главная</span>
+            <span class="favorites-home-arrow">←</span>
+        </a>
+    </section>
+
+    <!-- Карусель избранного -->
+    <section class="favorites-carousel-section">
+        <div class="favorites-carousel-container">
+            <div class="favorites-carousel-track">
+                <!-- Товары будут добавляться сюда динамически через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="footer-left">
+            <a href="https://chat.whatsapp.com/BnHddYTeJC20vGCimjl019" target="_blank" class="footer-icon-link">
+                <img src="images/Whatsapp.png" alt="WhatsApp" class="footer-icon">
+            </a>
+            <a href="https://t.me/+VTYAbY_cedFiZDFi" target="_blank" class="footer-icon-link">
+                <img src="images/telega.png" alt="Telegram" class="footer-icon">
+            </a>
+        </div>
+        <div class="footer-right">
+            <a href="tel:+79994551861" class="phone-number" style="text-decoration: none; color: #FFFFFF;">+7 (999) 455 18 61</a>
+        </div>
+    </footer>
+
+    <script>
+        // Прокрутка карусели колесиком мыши
+        const favoritesCarousel = document.querySelector('.favorites-carousel-container');
+        if (favoritesCarousel) {
+            favoritesCarousel.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                this.scrollLeft += e.deltaY;
+            });
+        }
+
+        // Получение избранного из localStorage
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        // Функция отображения избранного
+        function displayFavorites() {
+            const container = document.querySelector('.favorites-carousel-track');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                container.innerHTML = '<div style="text-align: center; width: 100%; padding: 50px;">Нет избранных товаров</div>';
+                return;
+            }
+            
+            favorites.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'favorites-product-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="favorites-product-image">
+                    <div class="favorites-product-price">${item.price.toLocaleString()} ₽</div>
+                    <div class="favorites-product-description">${item.name}</div>
+                    <div class="favorites-product-actions">
+                        <button class="favorites-cart-btn" onclick="addToCartFromFav(${item.id})">В корзину</button>
+                        <button class="favorites-like-btn active" onclick="removeFromFav(${item.id})">
+                            <img src="images/like.png" alt="like" class="favorites-like-icon">
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Удаление из избранного
+        function removeFromFav(id) {
+            favorites = favorites.filter(item => item.id !== id);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            displayFavorites();
+            alert('Товар удалён из избранного');
+        }
+
+        // Добавление в корзину из избранного
+        function addToCartFromFav(productId) {
+            const item = favorites.find(i => i.id === productId);
+            if (item) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(i => i.id === productId);
+                
+                if (existingItem) {
+                    alert('Этот товар уже в корзине!');
+                    return;
+                }
+                
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image
+                });
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Товар добавлен в корзину!');
+            }
+        }
+
+        // Загрузка избранного при открытии страницы
+        displayFavorites();
+    </script>
+</body>
+</html>

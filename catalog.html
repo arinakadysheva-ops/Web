@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Коллекционные товары</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="left-buttons">
+            <a href="cart.html" class="icon-btn" aria-label="Корзина" style="text-decoration: none;">
+                <img src="images/basket.png" alt="basket">
+            </a>
+            <a href="favorites.html" class="icon-btn" aria-label="Избранное" style="text-decoration: none;">
+                <img src="images/like.png" alt="like">
+            </a>
+        </div>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Логотип">
+        </div>
+        <div class="right-buttons">
+            <button class="text-btn">Каталог</button>
+            <a href="about.html" style="text-decoration: none;"><button class="text-btn">О нас</button></a>
+            <a href="delivery.html" style="text-decoration: none;"><button class="text-btn">Доставка</button></a>
+        </div>
+    </header>
+
+    <!-- Карусель товаров -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="product-card">
+                    <img src="images/History.png" alt="Историческая коллекция" class="product-image">
+                    <h3 class="card-title">История</h3>
+                    <div class="card-underline"></div>
+                    <div class="card-subtitle">
+                        <span class="card-subtitle-text">Монеты, флаги, окаменелости...</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/Garden.jpg" alt="Сад" class="product-image">
+                    <h3 class="card-title">Сад</h3>
+                    <div class="card-underline"></div>
+                    <div class="card-subtitle">
+                        <span class="card-subtitle-text">Статуи, вазоны, лавки...</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/Art.png" alt="Картины" class="product-image">
+                    <h3 class="card-title">Картины</h3>
+                    <div class="card-underline"></div>
+                    <div class="card-subtitle">
+                        <span class="card-subtitle-text">Живопись, литография, постеры...</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/Мебель.jpg" alt="Мебель" class="product-image">
+                    <h3 class="card-title">Мебель</h3>
+                    <div class="card-underline"></div>
+                    <div class="card-subtitle">
+                        <span class="card-subtitle-text">Стулья, шкафы, столы...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Плашка поиска -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Поиск">
+        </div>
+    </section>
+
+    <!-- Плашка каталог и кнопка "На главную" -->
+    <section class="catalog-section">
+        <div class="catalog-plate">
+            <span class="catalog-text">Каталог</span>
+        </div>
+        <a href="index.html" class="home-button">
+            <span class="home-text">Главная</span>
+            <span class="home-arrow">←</span>
+        </a>
+    </section>
+
+    <!--фильтры и сортировка-->
+    <section class="filter-section" onclick="openFiltersModal()">
+        <div class="filter-container">
+            <div class="filter-group">
+                <img src="images/настройки.png" alt="фильтр" class="filter-icon">
+                <span class="filter-text">Фильтры и сортировка</span>
+            </div>
+            <div class="filter-underline"></div>
+        </div>
+    </section>
+
+    <!-- Сетка товаров -->
+    <section class="products-grid-section">
+        <div class="products-grid">
+            <div class="product-item">
+                <img src="images/coin.png" alt="Старинная монета" class="product-item-image">
+                <div class="product-item-title">Старинная монета «50 копеек» 1921-го года</div>
+                <div class="product-item-price">3000 ₽</div>
+                <div class="product-item-actions">
+                    <button class="product-item-cart" onclick="addToCart(1, 'Старинная монета «50 копеек» 1921-го года', 3000, 'images/coin.png')">В корзину</button>
+                    <button class="product-item-like" data-id="1" onclick="toggleLike(this, 1, 'Старинная монета «50 копеек» 1921-го года', 3000, 'images/coin.png')">
+                        <img src="images/like.png" alt="like" class="like-icon">
+                    </button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="images/Lock.png" alt="Старинный замок" class="product-item-image">
+                <div class="product-item-title">Замок сундучный 19 век Варыпаев Федор</div>
+                <div class="product-item-price">15000 ₽</div>
+                <div class="product-item-actions">
+                    <button class="product-item-cart" onclick="addToCart(2, 'Замок сундучный 19 век Варыпаев Федор', 15000, 'images/Lock.png')">В корзину</button>
+                    <button class="product-item-like" data-id="2" onclick="toggleLike(this, 2, 'Замок сундучный 19 век Варыпаев Федор', 15000, 'images/Lock.png')">
+                        <img src="images/like.png" alt="like" class="like-icon">
+                    </button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="images/Товар 5.jpg" alt="Старинная солонка" class="product-item-image">
+                <div class="product-item-title">Старинная русская, серебряная, эмалевая солонка</div>
+                <div class="product-item-price">97000 ₽</div>
+                <div class="product-item-actions">
+                    <button class="product-item-cart" onclick="addToCart(3, 'Старинная русская, серебряная, эмалевая солонка', 97000, 'images/Товар 5.jpg')">В корзину</button>
+                    <button class="product-item-like" data-id="3" onclick="toggleLike(this, 3, 'Старинная русская, серебряная, эмалевая солонка', 97000, 'images/Товар 5.jpg')">
+                        <img src="images/like.png" alt="like" class="like-icon">
+                    </button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="images/Товар 6.jpg" alt="Старинная скамья" class="product-item-image">
+                <div class="product-item-title">Старинная скамья с высокой спинкой в бретонском стиле</div>
+                <div class="product-item-price">700000 ₽</div>
+                <div class="product-item-actions">
+                    <button class="product-item-cart" onclick="addToCart(4, 'Старинная скамья с высокой спинкой в бретонском стиле', 700000, 'images/Товар 6.jpg')">В корзину</button>
+                    <button class="product-item-like" data-id="4" onclick="toggleLike(this, 4, 'Старинная скамья с высокой спинкой в бретонском стиле', 700000, 'images/Товар 6.jpg')">
+                        <img src="images/like.png" alt="like" class="like-icon">
+                    </button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="images/Товар 7.jpg" alt="Подстаканник" class="product-item-image">
+                <div class="product-item-title">Старинный, серебряный подстаканник 84 пробы</div>
+                <div class="product-item-price">22000 ₽</div>
+                <div class="product-item-actions">
+                    <button class="product-item-cart" onclick="addToCart(5, 'Старинный, серебряный подстаканник 84 пробы', 22000, 'images/Товар 7.jpg')">В корзину</button>
+                    <button class="product-item-like" data-id="5" onclick="toggleLike(this, 5, 'Старинный, серебряный подстаканник 84 пробы', 22000, 'images/Товар 7.jpg')">
+                        <img src="images/like.png" alt="like" class="like-icon">
+                    </button>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="images/Товар 8.jpg" alt="Картина Берег реки" class="product-item-image">
+                <div class="product-item-title">Старинная картина «Берег реки», автор - H. MOSER</div>
+                <div class="product-item-price">40000 ₽</div>
+                <div class="product-item-actions">
+                    <button class="product-item-cart" onclick="addToCart(6, 'Старинная картина «Берег реки», автор - H. MOSER', 40000, 'images/Товар 8.jpg')">В корзину</button>
+                    <button class="product-item-like" data-id="6" onclick="toggleLike(this, 6, 'Старинная картина «Берег реки», автор - H. MOSER', 40000, 'images/Товар 8.jpg')">
+                        <img src="images/like.png" alt="like" class="like-icon">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="footer-left">
+            <a href="https://chat.whatsapp.com/BnHddYTeJC20vGCimjl019" target="_blank" class="footer-icon-link">
+                <img src="images/Whatsapp.png" alt="WhatsApp" class="footer-icon">
+            </a>
+            <a href="https://t.me/+VTYAbY_cedFiZDFi" target="_blank" class="footer-icon-link">
+                <img src="images/telega.png" alt="Telegram" class="footer-icon">
+            </a>
+        </div>
+        <div class="footer-right">
+            <a href="tel:+79994551861" class="phone-number" style="text-decoration: none; color: #FFFFFF;">+7 (999) 455 18 61</a>
+        </div>
+    </footer>
+
+    <!-- Модальное окно фильтров -->
+    <div id="filtersModal" class="filters-modal">
+        <!-- ... содержимое модального окна оставьте как было ... -->
+    </div>
+
+    <script>
+    // Корзина хранится в localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Избранное хранится в localStorage
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Функция добавления в корзину
+    function addToCart(productId, productName, productPrice, productImage) {
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantity: 1
+            });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Товар добавлен в корзину!');
+    }
+
+    // Функция для кнопки "Понравилось"
+    function toggleLike(button, productId, productName, productPrice, productImage) {
+        const existingIndex = favorites.findIndex(item => item.id === productId);
+        
+        if (existingIndex !== -1) {
+            favorites.splice(existingIndex, 1);
+            button.classList.remove('active');
+            alert('Товар удалён из избранного!');
+        } else {
+            favorites.push({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage
+            });
+            button.classList.add('active');
+            alert('Товар добавлен в избранное!');
+        }
+        
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+    // При загрузке страницы проверяем, какие товары уже в избранном
+    function checkFavoritesStatus() {
+        const likeButtons = document.querySelectorAll('.product-item-like');
+        likeButtons.forEach(button => {
+            const productId = parseInt(button.getAttribute('data-id'));
+            if (favorites.some(item => item.id === productId)) {
+                button.classList.add('active');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', checkFavoritesStatus);
+</script>
+</body>
+</html>

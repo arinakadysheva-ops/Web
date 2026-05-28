@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="left-buttons">
+            <a href="cart.html" class="icon-btn" aria-label="Корзина" style="text-decoration: none;">
+    <img src="images/basket.png" alt="basket">
+</a>
+           <a href="favorites.html" class="icon-btn" aria-label="Избранное" style="text-decoration: none;">
+    <img src="images/like.png" alt="like">
+</a>
+        </div>
+
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Логотип">
+        </div>
+
+       <div class="right-buttons">
+    <a href="catalog.html" style="text-decoration: none;">
+        <button class="text-btn">Каталог</button>
+    </a>
+    <a href="about.html" style="text-decoration: none;">
+        <button class="text-btn">О нас</button>
+    </a>
+    <a href="delivery.html" style="text-decoration: none;">
+        <button class="text-btn">Доставка</button>
+    </a>
+</div>
+    </header>
+
+    <!-- Анимированный текст -->
+    <section class="hero-text-section">
+        <h1 class="typing-text">История, достойная вашей коллекции</h1>
+    </section>
+
+<!-- Картинка на всю ширину -->
+    <section class="full-width-image-section">
+        <img src="images/Clock.png" alt="Часы" class="full-width-image">
+    </section>
+    
+   <!-- Преимущества -->
+    <section class="advantages-tag-section">
+        <div class="advantages-tag">
+            <span class="advantages-tag-text">Преимущества</span>
+        </div>
+    </section>
+
+    <!-- Блок преимуществ -->
+    <section class="advantages-section">
+        <!-- Первый ряд -->
+        <div class="advantages-row">
+            <!-- Надежность -->
+            <div class="advantage-item">
+                <div class="advantage-image-wrapper">
+                    <img src="images/Надежность.png" alt="Надежность" class="advantage-image">
+                </div>
+                <h3 class="advantage-title">Надежность</h3>
+                <p class="advantage-text">Оценку изделий проводят специалисты с профильным образованием и огромным опытом</p>
+            </div>
+            
+            <!-- Цена -->
+            <div class="advantage-item">
+                <div class="advantage-image-wrapper">
+                    <img src="images/Цена.png" alt="Цена" class="advantage-image">
+                </div>
+                <h3 class="advantage-title">Цена</h3>
+                <p class="advantage-text">Мы всегда оцениваем предметы честно и справедливо – вы точно знаете, за что платите, или сколько можете получить</p>
+            </div>
+            
+            <!-- Опыт -->
+            <div class="advantage-item">
+                <div class="advantage-image-wrapper">
+                    <img src="images/Опыт.png" alt="Опыт" class="advantage-image">
+                </div>
+                <h3 class="advantage-title">Опыт</h3>
+                <p class="advantage-text">Наш салон работает с 1998 года, и за 23 года работы он не прекращал свою деятельность, лишь немного менялись масштабы</p>
+            </div>
+        </div>
+        
+        <!-- Второй ряд (с отступом 30) -->
+        <div class="advantages-row second-row">
+            <!-- Консультации -->
+            <div class="advantage-item">
+                <div class="advantage-image-wrapper">
+                    <img src="images/Консультации.png" alt="Консультации" class="advantage-image">
+                </div>
+                <h3 class="advantage-title">Консультации</h3>
+                <p class="advantage-text">Если у вас есть какой-то предмет, который может оказаться антикварным, но вы ничего о нем не знаете – обратитесь к нам</p>
+            </div>
+            
+            <!-- Гарантии -->
+            <div class="advantage-item">
+                <div class="advantage-image-wrapper">
+                    <img src="images/Гарантии.png" alt="Гарантии" class="advantage-image">
+                </div>
+                <h3 class="advantage-title">Гарантии</h3>
+                <p class="advantage-text">По результатам оценки наши эксперты выдают заключение – оно является официальным подтверждением ценности и цены исследуемой вещи</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кнопка авторизации -->
+    <section class="auth-button-section">
+        <div class="auth-button" onclick="openAuthModal()">
+    <span class="auth-button-text">Авторизация</span>
+</div>
+    </section>
+ <!-- Блок с картой и контактами -->
+    <section class="map-contact-section">
+        <div class="map-contact-container">
+            <!-- Левая часть с контактами -->
+            <div class="contact-info">
+                <!-- Часы работы -->
+                <div class="contact-item">
+                    <img src="images/Часы работы.png" alt="Часы работы" class="contact-icon">
+                    <div class="contact-text-block">
+                        <h4 class="contact-title">Часы работы</h4>
+                        <p class="contact-text">10:00-22:00</p>
+                    </div>
+                </div>
+                
+                <!-- Адрес -->
+                <div class="contact-item">
+                    <img src="images/Адрес.png" alt="Адрес" class="contact-icon">
+                    <div class="contact-text-block">
+                        <h4 class="contact-title">Адрес</h4>
+                        <p class="contact-text">Литейный проспект, д. 15</p>
+                    </div>
+                </div>
+                
+                <!-- Телефон -->
+                <div class="contact-item">
+                    <img src="images/Телефон.png" alt="Телефон" class="contact-icon">
+                    <div class="contact-text-block">
+                        <h4 class="contact-title">Телефон</h4>
+                         <a href="tel:+79994551861" class="contact-text" style="text-decoration: none; color: #FFF9F2;">+7 (999) 455 18 61</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Правая часть с картой -->
+            <div class="map-container">
+    <div id="yandexMap" style="width: 100%; height: 100%;"></div>
+</div>
+        </div>
+    </section>
+
+
+<!-- Подвал сайта -->
+    <footer class="footer">
+    <div class="footer-left">
+        <a href="https://chat.whatsapp.com/BnHddYTeJC20vGCimjl019" target="_blank" class="footer-icon-link">
+            <img src="images/Whatsapp.png" alt="WhatsApp" class="footer-icon">
+        </a>
+        <a href="https://t.me/+VTYAbY_cedFiZDFi" target="_blank" class="footer-icon-link">
+            <img src="images/telega.png" alt="Telegram" class="footer-icon">
+        </a>
+    </div>
+    <div class="footer-right">
+        <a href="tel:+79994551861" class="phone-number" style="text-decoration: none; color: #FFFFFF;">+7 (999) 455 18 61</a>
+    </div>
+</footer>
+            <!-- Модальное окно авторизации -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <div class="auth-modal-outer">
+                <div class="auth-modal-inner">
+                    <!-- Крестик закрытия -->
+                    <button class="auth-modal-close" onclick="closeAuthModal()">
+                        <span class="auth-close-icon">✕</span>
+                    </button>
+                    <!-- Верхняя плашка -->
+                    <div class="auth-modal-header">
+                        <span class="auth-modal-title">Регистрация</span>
+                    </div>
+                    
+                    <!-- Поле Имя пользователя -->
+                    <div class="auth-input-wrapper">
+                        <input type="text" class="auth-input" id="username" placeholder="Имя пользователя">
+                    </div>
+                    
+                    <!-- Поле Email -->
+                    <div class="auth-input-wrapper">
+                        <input type="email" class="auth-input" id="email" placeholder="Email address">
+                    </div>
+                    
+                    <!-- Кнопка Вход -->
+                    <div class="auth-button-wrapper">
+                        <button class="auth-submit-btn" onclick="submitAuth()">Вход</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+// Открытие модального окна авторизации
+function openAuthModal() {
+    const modal = document.getElementById('authModal');
+    if (!modal) return;
+    modal.classList.remove('closing');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+// Закрытие модального окна авторизации
+function closeAuthModal() {
+    const modal = document.getElementById('authModal');
+    if (!modal) return;
+    modal.classList.add('closing');
+    
+    setTimeout(() => {
+        modal.classList.remove('show');
+        modal.classList.remove('closing');
+        document.body.style.overflow = '';
+    }, 600);
+}
+
+// Отправка формы авторизации
+function submitAuth() {
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+    
+    if (!username || !email) {
+        alert('Пожалуйста, заполните все поля');
+        return;
+    }
+    
+    if (!username.value || !email.value) {
+        alert('Пожалуйста, заполните все поля');
+        return;
+    }
+    
+    alert('Добро пожаловать, ' + username.value + '!');
+    closeAuthModal();
+}
+
+// Закрытие модального окна авторизации
+function closeAuthModal() {
+    const modal = document.getElementById('authModal');
+    if (!modal) return;
+    modal.classList.add('closing');
+    
+    setTimeout(() => {
+        modal.classList.remove('show');
+        modal.classList.remove('closing');
+        document.body.style.overflow = '';
+    }, 600);
+
+}
+</script>
+<!-- Подключение Яндекс.Карт -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=b6e67c89-3d93-408e-90b5-d7ab7f48cd15&lang=ru_RU" type="text/javascript"></script>
+<script type="text/javascript">
+    function initMap() {
+    var myMap = new ymaps.Map('yandexMap', {
+        center: [59.940500, 30.346500], // координаты Литейного проспекта, 15
+        zoom: 17,
+        controls: ['zoomControl', 'fullscreenControl']
+    });
+    var myPlacemark = new ymaps.Placemark([59.940500, 30.346500], {
+        hintContent: 'Наш салон',
+        balloonContent: 'Литейный проспект, д. 15'
+    });
+    myMap.geoObjects.add(myPlacemark);
+}
+
+    ymaps.ready(initMap);
+</script>
+</body>
+</html>

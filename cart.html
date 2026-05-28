@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="left-buttons">
+            <a href="cart.html" class="icon-btn" aria-label="Корзина" style="text-decoration: none;">
+                <img src="images/basket.png" alt="basket">
+            </a>
+            <a href="favorites.html" class="icon-btn" aria-label="Избранное" style="text-decoration: none;">
+                <img src="images/like.png" alt="like">
+            </a>
+        </div>
+
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Логотип">
+        </div>
+
+        <div class="right-buttons">
+            <a href="catalog.html" style="text-decoration: none;">
+                <button class="text-btn">Каталог</button>
+            </a>
+            <a href="about.html" style="text-decoration: none;">
+                <button class="text-btn">О нас</button>
+            </a>
+            <a href="delivery.html" style="text-decoration: none;">
+                <button class="text-btn">Доставка</button>
+            </a>
+        </div>
+    </header>
+
+    <!-- Плашка Корзина и кнопка Главная -->
+    <section class="cart-header-section">
+        <div class="cart-title-plate">
+            <span class="cart-title-text">Корзина</span>
+        </div>
+        <a href="index.html" class="cart-home-button"> 
+            <span class="cart-home-text">Главная</span>
+            <span class="cart-home-arrow">←</span>
+        </a>
+    </section>
+
+    <!-- Карусель товаров в корзине -->
+    <section class="cart-carousel-section">
+        <div class="cart-carousel-container">
+            <div class="cart-carousel-track">
+                <!-- Товары будут добавляться сюда динамически через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок итогов -->
+    <section class="cart-summary-section">
+        <div class="cart-summary-lines">
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Товары</span>
+                <span class="cart-summary-value" id="cart-total-goods">0 ₽</span>
+            </div>
+            <div class="cart-summary-row">
+                <span class="cart-summary-label">Доставка</span>
+                <span class="cart-summary-value" id="cart-delivery">0 ₽</span>
+            </div>
+            <div class="cart-summary-row total">
+                <span class="cart-summary-label">Итого</span>
+                <span class="cart-summary-value" id="cart-total">0 ₽</span>
+            </div>
+        </div>
+        <button class="cart-checkout-btn" onclick="checkout()">Перейти к оформлению</button>
+    </section>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="footer-left">
+            <a href="https://chat.whatsapp.com/BnHddYTeJC20vGCimjl019" target="_blank" class="footer-icon-link">
+                <img src="images/Whatsapp.png" alt="WhatsApp" class="footer-icon">
+            </a>
+            <a href="https://t.me/+VTYAbY_cedFiZDFi" target="_blank" class="footer-icon-link">
+                <img src="images/telega.png" alt="Telegram" class="footer-icon">
+            </a>
+        </div>
+        <div class="footer-right">
+            <a href="tel:+79994551861" class="phone-number" style="text-decoration: none; color: #FFFFFF;">+7 (999) 455 18 61</a>
+        </div>
+    </footer>
+
+   <script>
+    // Получение корзины из localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Функция отображения корзины
+    function displayCart() {
+        const cartContainer = document.querySelector('.cart-carousel-track');
+        const totalGoodsSpan = document.getElementById('cart-total-goods');
+        const totalSpan = document.getElementById('cart-total');
+        
+        if (!cartContainer) return;
+        
+        cartContainer.innerHTML = '';
+        let total = 0;
+        
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<div style="text-align: center; width: 100%; padding: 50px;">Ваша корзина пуста</div>';
+            totalGoodsSpan.innerText = '0 ₽';
+            totalSpan.innerText = '0 ₽';
+            return;
+        }
+        
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-product-card';
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="cart-product-image">
+                <div class="cart-product-info">
+                    <div class="cart-product-title">${item.name}</div>
+                    <div class="cart-product-price">${item.price.toLocaleString()} ₽</div>
+                </div>
+                <div class="cart-item-quantity">
+                    <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                </div>
+                <button class="cart-product-remove" onclick="removeFromCart(${item.id})">
+                    <img src="images/Trash.png" alt="удалить" class="cart-remove-icon">
+                </button>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
+        
+        const delivery = total > 0 ? 500 : 0;
+        totalGoodsSpan.innerText = total.toLocaleString() + ' ₽';
+        totalSpan.innerText = (total + delivery).toLocaleString() + ' ₽';
+    }
+    
+    // Обновление количества
+    function updateQuantity(id, delta) {
+        const itemIndex = cart.findIndex(i => i.id === id);
+        if (itemIndex !== -1) {
+            cart[itemIndex].quantity += delta;
+            if (cart[itemIndex].quantity <= 0) {
+                cart.splice(itemIndex, 1);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+    
+    // Удаление товара
+    function removeFromCart(id) {
+        cart = cart.filter(i => i.id !== id);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+    }
+    
+    // Оформление заказа
+    function checkout() {
+        if (cart.length === 0) {
+            alert('Ваша корзина пуста');
+        } else {
+            alert('Спасибо за заказ! Мы свяжемся с вами.');
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+    
+    // Загрузка корзины при открытии страницы
+    displayCart();
+</script>
+</body>
+</html>
